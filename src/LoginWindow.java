@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import javax.swing.JTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -15,10 +16,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
+
 public class LoginWindow extends JFrame {
     private String user;
     private String pass;
-    public JFrame frame = new JFrame("Login");
+    public static JFrame frame = new JFrame("Login");
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -46,18 +48,105 @@ public class LoginWindow extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginWindow frame = new LoginWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		frame.setSize(300, 150);
+		
+
+		JPanel panel = new JPanel();
+		frame.add(panel);
+		panel.setLayout(null);
+
+        
+        JLabel userLabel = new JLabel("Usuario");
+        userLabel.setBounds(10, 10, 80, 25);
+        panel.add(userLabel);
+
+        final JTextField userText = new JTextField(20);
+        userText.setBounds(100, 10, 160, 25);
+        panel.add(userText);
+
+        JLabel passwordLabel = new JLabel("Contraseña");
+        passwordLabel.setBounds(10, 40, 80, 25);
+        panel.add(passwordLabel);
+
+        final JPasswordField passwordText = new JPasswordField(20);
+        passwordText.setBounds(100, 40, 160, 25);
+        panel.add(passwordText);
+
+        JButton loginButton = new JButton("Acceso");
+        loginButton.setBounds(10, 80, 90, 25);
+        panel.add(loginButton);
+        loginButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String usuario = userText.getText();
+                String pass = passwordText.getText();
+                try{
+                   // Client client = new Client (usuario, pass);    // se le pasa el nombre de usuario
+                   // client.initialize ();
+                    
+                    frame.setVisible(false);
+                    
+                    //UserList userList=new UserList();
+                    //userList.main(client);
+                                                         
+                }
+
+                catch (Exception ex)
+                {
+                    System.out.println ("ERROR: " + ex);
+                    ex.printStackTrace (System.out);
+                }                                                             
+                // display/center the jdialog when the button is pressed               
+            } 
+        });
+        JButton registerButton = new JButton("Registro");
+        registerButton.setBounds(160, 80, 90, 25);
+        panel.add(registerButton);
+        registerButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String usuario = userText.getText();
+                String pass = passwordText.getText();
+                try{
+                	
+                   // Client client = new Client (usuario, pass);    // se le pasa el nombre de usuario
+                   // client.initialize ();
+                    
+                    frame.setVisible(false);
+                    
+                    UserWindow userWindow=new UserWindow();
+                    userWindow.main();               
+                }
+                catch (Exception ex)
+                {
+                    System.out.println ("ERROR: " + ex);
+                    ex.printStackTrace (System.out);
+                }             
+             // display/center the jdialog when the button is pressed              
+            } 
+        });
+
+
+		frame.setVisible(true);
 	}
 
+    public void close(){
+        
+        frame.dispose();
+    }
+    private void setUser(String user){
+        this.user=user;
+    }
+    private void setPassword(String pass){
+        this.pass = pass;
+    }
+    public String getUser(){
+        return user;
+    }
+    public String getPass(){
+        return pass;
+    }
+	
 	/**
 	 * Create the frame.
 	 */
