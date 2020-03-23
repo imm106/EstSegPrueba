@@ -16,7 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
-
 public class LoginWindow extends JFrame {
     private String user;
     private String pass;
